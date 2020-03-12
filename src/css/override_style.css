@@ -1,0 +1,58 @@
+.myheader{
+	margin-top: 0;
+	background-color:#800080;
+	border: 1px solid;
+	border-color: #800080;
+	box-shadow: 2px 5px #DCDCDC;
+}
+
+.myheader p{
+	margin:0;
+	font-weight: bold;
+	font-size: 50px;
+	color:white;	
+}
+
+.container{
+	margin-right:0;
+	margin-left: 0;
+	width: 100%;
+}
+
+.search_row{
+	margin : 0;
+	width:100%;
+}
+
+.custom_panel{
+	border-color: #800080;
+}
+
+.error_panel{
+	border-color: red;
+}
+
+.panel-primary .custom_header_panel{
+	background-color: #800080;
+	font-weight: bold;
+}
+
+.panel-primary .error_header_panel{
+	background-color: red;
+	font-weight: bold;
+}
+
+p.releaseDate{
+	color : #800080;
+	font-weight: bold;
+}
+
+.content-container{
+	margin-bottom: 10px;
+}
+
+p.errMsg{
+	color : red;
+	font-weight: bold;
+	font-style: 70px;
+}
