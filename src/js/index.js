@@ -1,13 +1,15 @@
 import Rx from 'rx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/override_style.css';
-import {
+import {	
 	getSearchTemplate,
 	loadMovie,
+	loadReview,
 	loadError
 } from "./template";
 import {
-	getMovies
+	getMovies,
+	getReviews,
 } from "./service";
 
 const loadMovies = (movieName) => {
@@ -25,21 +27,48 @@ const loadMovies = (movieName) => {
 			const htmltemplate = loadError(movieList);
 			$(".movie-container").append(htmltemplate);
 		}
-
-		
 	});
 }
 
+const loadReviews = (movieName) => {
+	let observable = getReviews(movieName);
+	observable.subscribe((data) =>{
+		//console.log(data);
+		let movieList = (data["status"] === 'OK') ? data["results"] : [];
 
-
-$(() => {
-	$(".content-container").append(getSearchTemplate());
-	$(".movie-container").html("<p class='releaseDate'>Movie List</p>");
-
-	$("#searchBtn").click(() => {		
-		$(".movie-container").html("<p class='releaseDate'>Movie List</p>");
-		let movieName = $("#searchMovie").val();
-		loadMovies(movieName);
+		if($.isArray(movieList) === true && movieList.length){
+			const htmltemplate = loadReview(movieList);
+			$(".movie-container").append(htmltemplate);
+		}else{
+			const htmltemplate = loadError(movieList);
+			$(".movie-container").append("<div class='row'>"+htmltemplate+"</div>");
+		}
 	});
+}
+
+$(() => {	
+	$("#movie_menu_select li").click(function(){		
+		let MENU_SELECTION = $(this).find("a").text();
+
+		$(this).addClass("active").siblings().removeClass("active");
+		
+		$("#mother-container").html(getSearchTemplate());
+
+
+		$("#searchBtn").on("click",function(){	
+			console.log("Clicked....");	
+			$(".movie-container").html("<p class='releaseDate'>Movie List</p>");
+			let movieName = $("#searchMovie").val();
+			
+			if(MENU_SELECTION === "Movie"){
+				loadMovies(movieName);	
+			}else{
+				loadReviews(movieName);
+			}
+			
+		});
+	});
+
+	
 });
 

@@ -1,18 +1,22 @@
-.myheader{
-	margin-top: 0;
+.mynav{
 	background-color:#800080;
-	border: 1px solid;
 	border-color: #800080;
-	box-shadow: 2px 5px #DCDCDC;
+	border-radius: 0;	
 }
 
-.myheader p{
-	margin:0;
+.mynav .navbar-brand{
+	color:white;
 	font-weight: bold;
-	font-size: 50px;
-	color:white;	
 }
 
+.mynav .navbar-nav li a{
+	color:white;
+}
+
+.mynav .navbar-nav li.active a{
+	color:#800080;
+}
+	
 .container{
 	margin-right:0;
 	margin-left: 0;
